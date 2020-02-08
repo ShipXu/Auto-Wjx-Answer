@@ -31,7 +31,7 @@
 
 ## 运行环境准备
 准备部分主要是将脚本中自己的信息给修改掉，并且需要下载浏览器的驱动并填写驱动所在的路径至脚本中。
-
+- **Python 3.6.5**以上
 - 首先，chrome用户需下载驱动至脚本同一目录下，其中驱动版本需要和chrome版本对齐。
 [Chrome驱动下载地址](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 (使用git下载的用户，文件夹中有包含相关驱动)
