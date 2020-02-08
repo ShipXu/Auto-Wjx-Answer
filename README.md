@@ -1,7 +1,6 @@
 # Auto-Wjx-Answer
 项目的主要目的就是自动完成问卷星调查报告
-# Auto-Wjx-Answer
-项目的主要目的就是自动完成问卷星调查报告
+
 # Readme
 目前完成的是基础版本，主要先解决了作者自己填写报告的问题，即与疫情相关问题为否的情况。填写内容，包括问卷中的[1,2,3,4,5,15,17,19,21,22,23,28]。其中，[5,15,17,19,21,22,23,28]答案均为否。
 
@@ -36,8 +35,6 @@
 - 首先，chrome用户需下载驱动至脚本同一目录下，其中驱动版本需要和chrome版本对齐。
 [Chrome驱动下载地址](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 (使用git下载的用户，文件夹中有包含相关驱动)
-
-
 - 安装selenium模块: pip install selenium
 - 然后，根据个人信息修改answer-sheet.txt的内容。
 
