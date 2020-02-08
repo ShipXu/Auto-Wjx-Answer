@@ -90,3 +90,4 @@ if __name__ == '__main__':
     driver_path = args.driver
 
     parse_questionnaire(driver_path, url, answer_dict)
+    time.sleep(30)
