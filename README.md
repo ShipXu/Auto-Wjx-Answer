@@ -55,3 +55,8 @@ optional arguments:
   -d DRIVER, --driver-path DRIVER
                         the driver path
 ```
+
+运行示例
+```
+python .\Auto_WJX_Answer.py https://www.wjx.cn/jq/56203095.aspx 
+```
