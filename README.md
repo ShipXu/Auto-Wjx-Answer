@@ -5,7 +5,7 @@
 目前完成的是基础版本，主要先解决了作者自己填写报告的问题，即与疫情相关问题为否的情况。填写内容，包括问卷中的[1,2,3,4,5,15,17,19,21,22,23,28]。其中，[5,15,17,19,21,22,23,28]答案均为否。
 
 ### 更新部分
-- 添加了微信监控部分，在电脑上运行该程序后，通过网页版微信API监控消息，并自动打开网页完成填写工作
+- 添加了微信监控部分，在电脑上运行该程序后，通过网页版微信API监控消息，并自动打开网页完成填写工作[错过发消息的时间，只需要再次转发到任意群或人即可]
 
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
