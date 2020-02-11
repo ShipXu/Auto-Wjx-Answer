@@ -4,6 +4,9 @@
 # Readme
 目前完成的是基础版本，主要先解决了作者自己填写报告的问题，即与疫情相关问题为否的情况。填写内容，包括问卷中的[1,2,3,4,5,15,17,19,21,22,23,28]。其中，[5,15,17,19,21,22,23,28]答案均为否。
 
+### 更新部分
+- 添加了微信监控部分，在电脑上运行该程序后，通过网页版微信API监控消息，并自动打开网页完成填写工作
+
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 ## 内容列表
@@ -23,6 +26,7 @@
 - 前端知识: 少量前端的知识，主要需要回顾一下html里面的一些控件，同时对html文件的基本结构有个基本的把握就可以;
 - [Xpath](https://zh.wikipedia.org/wiki/XPath):用于定位网页中的控件;
 - Selenium: Selenium是一个用于测试网页程序的程序，它的另外一个作用是做为爬虫时的工具，用于在代码中与网页进行交互;[Selenium-python的官方文档](https://selenium-python-zh.readthedocs.io/en/latest/index.html);
+- wxpy: 是在itchat的基础上开发的个人微信管理API，通过大量接口优化提升了模块的易用性，并进行丰富的功能扩展[wxpy的官方文档](https://wxpy.readthedocs.io/zh/latest/index.html);
 
 
 ## 详细实现
@@ -36,6 +40,7 @@
 [Chrome驱动下载地址](https://sites.google.com/a/chromium.org/chromedriver/downloads)
 (使用git下载的用户，文件夹中有包含相关驱动)
 - 安装selenium模块: pip install selenium
+- 安装wxpy模块: pip install wxpy
 - 然后，根据个人信息修改answer-sheet.txt的内容。
 
 ![image](https://github.com/ShipXu/Auto-Wjx-Answer/blob/master/images/person%20info.JPG)
@@ -45,18 +50,19 @@
 ## 运行方法
 在控制台运行Auto_WJX_Answer.py，具体命令格式如下，运行时需指定：
 ```
-usage: Auto_WJX_Answer.py [-h] [-d DRIVER] url
-
-positional arguments:
-  url                   the questionary website
+usage: auto_wjx_answer.py [-h] [-u URL] [-d DRIVER]
 
 optional arguments:
   -h, --help            show this help message and exit
+  -u URL, --url URL     if use url, the fill the questionary of the url; else
+                        watch the wechat
   -d DRIVER, --driver-path DRIVER
                         the driver path
 ```
 
 运行示例
 ```
-python .\Auto_WJX_Answer.py https://www.wjx.cn/jq/56203095.aspx 
+python .\Auto_WJX_Answer.py https://www.wjx.cn/jq/56203095.aspx
+or
+python .\Auto_WJX_Answer.py
 ```
