@@ -24,22 +24,17 @@ from wxpy import *
 
 
 # fill the first 4 questions
-def answer_personal_questions(driver, grade, stunum, name, dormitory):
-    grade_choice = driver.find_element_by_xpath('//*[@id="divquestion1"]/ul/li[{}]/a'.format(grade))
+def answer_personal_questions(driver, answer_dict):
+    grade_choice = driver.find_element_by_xpath('//*[@id="divquestion1"]/ul/li[{}]/a'.format(answer_dict['q1']))
     grade_choice.click()
 
-    stunum_input = driver.find_element_by_id('q2')
-    stunum_input.clear()
-    stunum_input.send_keys(stunum)
+    sex_choice = driver.find_element_by_xpath('//*[@id="divquestion4"]/ul/li[{}]/a'.format(answer_dict['q4']))
+    sex_choice.click()
 
-    name_input = driver.find_element_by_id('q3')
-    name_input.clear()
-    name_input.send_keys(name)
-
-    dormitory_input = driver.find_element_by_id('q4')
-    dormitory_input.clear()
-    dormitory_input.send_keys(dormitory)
-
+    for question in ['q2', 'q3', 'q5', 'q6', 'q14']:
+        input_element = driver.find_element_by_id(question)
+        input_element.clear()
+        input_element.send_keys(answer_dict[question])
 
 # In[4]:
 
@@ -54,10 +49,10 @@ def parse_questionnaire(driver_path, url, asnwer_dict):
     except:
         pass
 
-    answer_personal_questions(driver, answer_dict[1], answer_dict[2], answer_dict[3], answer_dict[4])
+    answer_personal_questions(driver, answer_dict)
 
     ## fill the last questions for people have no connnection with hubei
-    for q_num in [5, 7, 8, 15, 17, 19, 21, 22, 23, 25, 30]:
+    for q_num in [7, 9, 10, 17, 19, 21, 23, 24, 25, 27, 32]:
         driver.find_element_by_xpath(f'//*[@id="divquestion{q_num}"]/ul/li[2]/a').click()
 
     # check the result page
@@ -89,36 +84,39 @@ if __name__ == '__main__':
         for line in file.readlines():
             q_num = int(line.split()[0])
             answer = line.split()[-1]
-            answer_dict[q_num] = answer
+            answer_dict['q{}'.format(q_num)] = answer
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-u', '--url', type=str, action='store', dest="url",
-                        default='./chromedriver',
+    # parser.add_argument('-u', '--url', type=str, action='store', dest="url",
+    #                     default='./chromedriver',
+    #                     help="if use url, the fill the questionary of the url; else watch the wechat")
+    parser.add_argument('url', type=str,
                         help="if use url, the fill the questionary of the url; else watch the wechat")
     parser.add_argument('-d', '--driver-path', action='store', dest="driver",
                         default='./chromedriver', help="the driver path")
     args = parser.parse_args()
     url = args.url
     driver_path = args.driver
+    parse_questionnaire(driver_path, url, answer_dict)
 
-    if not url:
-        parse_questionnaire(driver_path, url, answer_dict)
-    else:
-        def wjx_answer(text, driver_path='./chromedriver'):
-            text = str(text)
-            print(text)
-            url = url_processer(text)
-            print(url)
+    # if not url:
+    #     parse_questionnaire(driver_path, url, answer_dict)
+    # else:
+    #     def wjx_answer(text, driver_path='./chromedriver'):
+    #         text = str(text)
+    #         print(text)
+    #         url = url_processer(text)
+    #         print(url)
 
-            if url is not None:
-                parse_questionnaire(driver_path, url, answer_dict)
+    #         if url is not None:
+    #             parse_questionnaire(driver_path, url, answer_dict)
 
-        bot = Bot()
-        bot.groups(update=True, contact_only=False)
+    #     bot = Bot()
+    #     bot.groups(update=True, contact_only=False)
 
-        # watch all groups' messages and process it
-        @bot.register(except_self=False)
-        def watch_all_group_msg(msg):
-            wjx_answer(msg)
+    #     # watch all groups' messages and process it
+    #     @bot.register(except_self=False)
+    #     def watch_all_group_msg(msg):
+    #         wjx_answer(msg)
 
-        embed()
+    #     embed()
